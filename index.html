@@ -1,31 +1,66 @@
-<input id="fullname" name="fullname" type="text" size="100"/>
-<input id="address" name="address" type="text" size="100"/>
+<table width="400">
+    <caption>Проверка по справочнику экстремистов</caption>
+    <tr>
+        <td>ФИО</td>
+        <td>
+            <input id="fullname" name="fullname" type="text" size="100" />
+        </td>
+    </tr>
+    <tr>
+        <td>Дата рождения</td>
+        <td>
+            <input id="birthdate" name="birthdate" type="text" size="100" />
+        </td>
+    </tr>
+    <tr>
+        <td>Место рождения</td>
+        <td>
+            <input id="birthplace" name="birthplace" type="text" size="100" />
+        </td>
+    </tr>
+    <tr>
+        <td>ИНН</td>
+        <td>
+            <input id="inn" name="inn" type="text" size="100" />
+        </td>
+    </tr>
+    <tr>
+        <td>Адрес</td>
+        <td>
+            <input id="address" name="address" type="text" size="100" />
+        </td>
+    </tr>
+    <tr>
+        <td>Документ</td>
+        <td>
+            <input id="document" name="document" type="text" size="100" />
+        </td>
+    </tr>
+    <tr>
+        <td/>
+        <td>
+            <button onclick="alert('Test!');">Проверить на вхождение в ЧС</button>
+        </td>
+    </tr>
+</table>
 
 <link href="https://dadata.ru/static/css/lib/suggestions-15.2.css" type="text/css" rel="stylesheet" />
 <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <!--[if lt IE 10]>
-<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxtransport-xdomainrequest/1.0.1/jquery.xdomainrequest.min.js"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxtransport-xdomainrequest/1.0.1/jquery.xdomainrequest.min.js"></script>
 <![endif]-->
 <script type="text/javascript" src="https://dadata.ru/static/js/lib/jquery.suggestions-15.2.min.js"></script>
 <script type="text/javascript">
     $("#fullname").suggestions({
         serviceUrl: "https://dadata.ru/api/v2",
         token: "d98e44666ddbd4718f782a71e1d64964cd03896a",
-        type: "NAME",
-        /* Вызывается, когда пользователь выбирает одну из подсказок */
-        onSelect: function(suggestion) {
-            console.log(suggestion);
-        }
+        type: "NAME"
     });
 </script>
 <script type="text/javascript">
     $("#address").suggestions({
         serviceUrl: "https://dadata.ru/api/v2",
         token: "d98e44666ddbd4718f782a71e1d64964cd03896a",
-        type: "ADDRESS",
-        /* Вызывается, когда пользователь выбирает одну из подсказок */
-        onSelect: function(suggestion) {
-            console.log(suggestion);
-        }
+        type: "ADDRESS"
     });
 </script>
