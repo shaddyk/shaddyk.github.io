@@ -154,7 +154,7 @@
                 var dataSet = [[]];
                 for (i = 0; i < parsedClients.matchedParty.length; ++i) {
                     for (j = 0; j < parsedClients.matchedParty[i].party.field.length; ++j) {
-                        fillPartyData(i,j);
+                        fillPartyData(parsedClients,i,j);
                     }
                 }
                 console.log(dataSet);
@@ -165,8 +165,8 @@
             }
     }
             
-    function fillPartyData(party, field) {
-        curField = parsedClients.matchedParty[party].party.field[field];
+    function fillPartyData(client,party, field) {
+        curField = client.matchedParty[party].party.field[field];
         if (curField.name === 'rule'){
             dataSet[party][0] = curField.value;
         }
