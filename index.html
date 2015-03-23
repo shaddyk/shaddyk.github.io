@@ -161,26 +161,28 @@
             }
             else {
                 alert("The request did not succeed!\n\nThe response status was: " + client.status + " " + client.statusText + ".");
+                
             }
+    }
             
-            function fillPartyData(party, field) {
-    curField = parsedClients.matchedParty[party].party.field[field];
-    if (curField.name === 'rule'){
-        dataSet[party][0] = curField.value;
+    function fillPartyData(party, field) {
+        curField = parsedClients.matchedParty[party].party.field[field];
+        if (curField.name === 'rule'){
+            dataSet[party][0] = curField.value;
+        }
+        else if (curField.name === 'nameRawSource'){
+            dataSet[party][1] = curField.value;
+        }
+        else if (curField.name === 'birthdate'){
+            dataSet[party][2] = curField.value;
+        }
+        else if (curField.name === 'birthPlace'){
+            dataSet[party][3] = curField.value;
+        }
+        else if (curField.name === 'inn'){
+            dataSet[party][4] = curField.value;
+        }
     }
-    else if (curField.name === 'nameRawSource'){
-        dataSet[party][1] = curField.value;
-    }
-    else if (curField.name === 'birthdate'){
-        dataSet[party][2] = curField.value;
-    }
-    else if (curField.name === 'birthPlace'){
-        dataSet[party][3] = curField.value;
-    }
-    else if (curField.name === 'inn'){
-        dataSet[party][4] = curField.value;
-    }
-}
         </script>
     </body>
 </html>
