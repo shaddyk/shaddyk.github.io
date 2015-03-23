@@ -1,106 +1,103 @@
 <!DOCTYPE html>
 <html>
-<head>
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-<link href="https://dadata.ru/static/css/lib/suggestions-15.2.css" type="text/css" rel="stylesheet" />
-</head>
-<body>
-<table class="table" width="400">
-    <caption>Проверка по справочнику экстремистов</caption>
-    <tr>
-        <td>ФИО</td>
-        <td>
-            <input id="fullname" name="fullname" type="text" size="100" />
-        </td>
-    </tr>
-    <tr>
-        <td>Дата рождения</td>
-        <td>
-            <input id="birthdate" name="birthdate" type="text" size="100" />
-        </td>
-    </tr>
-    <tr>
-        <td>Место рождения</td>
-        <td>
-            <input id="birthplace" name="birthplace" type="text" size="100" />
-        </td>
-    </tr>
-    <tr>
-        <td>ИНН</td>
-        <td>
-            <input id="inn" name="inn" type="text" size="100" />
-        </td>
-    </tr>
-    <tr>
-        <td>Адрес</td>
-        <td>
-            <input id="address" name="address" type="text" size="100" />
-        </td>
-    </tr>
-    <tr>
-        <td>Документ</td>
-        <td>
-            <input id="doc" name="doc" type="text" size="100" />
-        </td>
-    </tr>
-    <tr>
-        <td/>
-        <td>
-            <button id="checkBlacklist">Проверить на вхождение в ЧС</button>
-        </td>
-    </tr>
-</table>
+    <head>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="https://dadata.ru/static/css/lib/suggestions-15.2.css" type="text/css"/>
+    </head>
+    <body>
+        <table class="table" width="400">
+            <caption>Проверка по справочнику экстремистов</caption>
+            <tr>
+                <td>ФИО</td>
+                <td class="col-md-3">
+                    <input id="fullname" name="fullname" type="text" size="100"/>
+                </td>
+            </tr>
+            <tr>
+                <td>Дата рождения</td>
+                <td class="col-md-3">
+                    <input id="birthdate" name="birthdate" type="text" size="100"/>
+                </td>
+            </tr>
+            <tr>
+                <td>Место рождения</td>
+                <td class="col-md-3">
+                    <input id="birthplace" name="birthplace" type="text" size="100"/>
+                </td>
+            </tr>
+            <tr>
+                <td>ИНН</td>
+                <td class="col-md-3">
+                    <input id="inn" name="inn" type="text" size="100"/>
+                </td>
+            </tr>
+            <tr>
+                <td>Адрес</td>
+                <td class="col-md-3">
+                    <input id="address" name="address" type="text" size="100"/>
+                </td>
+            </tr>
+            <tr>
+                <td>Документ</td>
+                <td class="col-md-3">
+                    <input id="doc" name="doc" type="text" size="100"/>
+                </td>
+            </tr>
+            <tr>
+                <td/>
+                <td class="col-md-3">
+                    <button id="checkBlacklist">Проверить на вхождение в ЧС</button>
+                </td>
+            </tr>
+        </table>
 
-<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<!--[if lt IE 10]>
-    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxtransport-xdomainrequest/1.0.1/jquery.xdomainrequest.min.js"></script>
-<![endif]-->
-<script type="text/javascript" src="https://dadata.ru/static/js/lib/jquery.suggestions-15.2.min.js"></script>
-<script type="text/javascript">
-    $("#fullname").suggestions({
-        serviceUrl: "https://dadata.ru/api/v2",
-        token: "d98e44666ddbd4718f782a71e1d64964cd03896a",
-        type: "NAME"
-    });
-</script>
-<script type="text/javascript">
-    $("#address").suggestions({
-        serviceUrl: "https://dadata.ru/api/v2",
-        token: "d98e44666ddbd4718f782a71e1d64964cd03896a",
-        type: "ADDRESS"
-    });
-</script>
-<script type="text/javascript">
-document.getElementById('checkBlacklist').onclick = checkBlacklist;
+        <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script type="text/javascript" src="https://dadata.ru/static/js/lib/jquery.suggestions-15.2.min.js"></script>
+        <script type="text/javascript">
+            $("#fullname").suggestions({
+            serviceUrl: "https://dadata.ru/api/v2",
+            token: "d98e44666ddbd4718f782a71e1d64964cd03896a",
+            type: "NAME"
+            });
+        </script>
+        <script type="text/javascript">
+            $("#address").suggestions({
+            serviceUrl: "https://dadata.ru/api/v2",
+            token: "d98e44666ddbd4718f782a71e1d64964cd03896a",
+            type: "ADDRESS"
+            });
+        </script>
+        <script type="text/javascript">
+            document.getElementById('checkBlacklist').onclick = checkBlacklist;
+            function checkBlacklist() {
+            var url = "http://cdi-prototype:8080/cdi/soap/services/2_13/PartyRA/search";
 
-function checkBlacklist() {
-    var url = "http://cdi-prototype:8080/cdi/soap/services/2_13/PartyRA/search";
+            //request params
+            var fullname = document.getElementById('fullname').value;
+            console.log(fullname);
+            var birthdate = document.getElementById('birthdate').value;
+            var birthplace = document.getElementById('birthplace').value;
+            var inn = document.getElementById('inn').value;
+            var address = document.getElementById('address').value;
+            var doc = document.getElementById('doc').value;
 
-    //request params
-    var fullname = document.getElementById('fullname').value;
-    console.log(fullname);
-    var birthdate = document.getElementById('birthdate').value;
-    var birthplace = document.getElementById('birthplace').value;
-    var inn = document.getElementById('inn').value;
-    var address = document.getElementById('address').value;
-    var doc = document.getElementById('doc').value;
+            var text = '{ "query" : "' + fullname + '" }';
 
-    var text = '{ "query" : "' + fullname + '" }';
+            var client = new XMLHttpRequest();
 
-    var client = new XMLHttpRequest();
+            client.open("POST", url, false);
 
-    client.open("POST", url, false);
+            client.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            client.setRequestHeader("Authorization", "Basic cGVyZm9ybWVyOjEyMzQ1Ng==");
 
-    client.setRequestHeader("Accept-Encoding", "gzip,deflate");
-    client.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    client.setRequestHeader("Authorization", "Basic cGVyZm9ybWVyOjEyMzQ1Ng==");
+            client.send(text);
 
-    client.send(text);
-
-    if (client.status == 200) alert("The request succeeded!\n\nThe response representation was:\n\n" + client.responseText);
-    else alert("The request did not succeed!\n\nThe response status was: " + client.status + " " + client.statusText + ".");
-}
-</script>
-</body>
+            if (client.status == 200)
+                alert("The request succeeded!\n\nThe response representation was:\n\n" + client.responseText);
+            else
+                alert("The request did not succeed!\n\nThe response status was: " + client.status + " " + client.statusText + ".");
+            }
+        </script>
+    </body>
 </html>
