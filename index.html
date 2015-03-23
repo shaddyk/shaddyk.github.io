@@ -1,6 +1,7 @@
 <html>
     <head>
         <link rel="stylesheet" href="https://dadata.ru/static/css/lib/suggestions-15.2.css" type="text/css"/>
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.5/css/jquery.dataTables.css" type="text/css"/>
     </head>
     <body>
         <table>
@@ -51,6 +52,7 @@
 
         <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script type="text/javascript" src="https://dadata.ru/static/js/lib/jquery.suggestions-15.2.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/1.10.5/js/jquery.dataTables.min.js"></script>
         <script type="text/javascript">
             $("#fullname").suggestions({
             serviceUrl: "https://dadata.ru/api/v2",
@@ -148,10 +150,36 @@
             client.send(text);
 
             if (client.status == 200)
-                alert("The request succeeded!\n\nThe response representation was:\n\n" + client.responseText);
+                var parsedClients = JSON.parse(client.responseText);
+                var dataSet = [[]];
+                for (i = 0; i < parsedClients.matchedParty.length; ++i) {
+                    for (j = 0; j < parsedClients.matchedParty[i].party.field.length; ++j) {
+                        fillPartyData(i,j);
+                    }
+                }
+                console.log(dataSet);
             else
                 alert("The request did not succeed!\n\nThe response status was: " + client.status + " " + client.statusText + ".");
             }
+            
+            function fillPartyData(party, field) {
+    curField = parsedClients.matchedParty[party].party.field[field];
+    if (curField.name === 'rule'){
+        dataSet[party][0] = curField.value;
+    }
+    else if (curField.name === 'nameRawSource'){
+        dataSet[party][1] = curField.value;
+    }
+    else if (curField.name === 'birthdate'){
+        dataSet[party][2] = curField.value;
+    }
+    else if (curField.name === 'birthPlace'){
+        dataSet[party][3] = curField.value;
+    }
+    else if (curField.name === 'inn'){
+        dataSet[party][4] = curField.value;
+    }
+}
         </script>
     </body>
 </html>
