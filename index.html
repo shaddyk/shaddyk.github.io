@@ -49,6 +49,8 @@
                 </td>
             </tr>
         </table>
+        
+        <table cellpadding="0" cellspacing="0" border="0" class="display" id="result"/>
 
         <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script type="text/javascript" src="https://dadata.ru/static/js/lib/jquery.suggestions-15.2.min.js"></script>
@@ -184,6 +186,23 @@
             dataSet[party][4] = curField.value;
         }
     }
+    
+    $(document).ready(function () {
+    $('#result').dataTable({
+        "data": dataSet,
+            "columns": [ {
+            "title": "Правило"
+        }, {
+            "title": "ФИО"
+        }, {
+            "title": "Дата рождения"
+        }, {
+            "title": "Место рождения"
+        }, {
+            "title": "ИНН"
+        }]
+    });
+    });
         </script>
     </body>
 </html>
