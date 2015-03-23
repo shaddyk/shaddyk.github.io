@@ -155,6 +155,7 @@
 
             if (client.status == 200) {
                 var parsedClients = JSON.parse(client.responseText);
+                console.log(parsedClients)
                 if (parsedClients != null) {
                 for (i = 0; i < parsedClients.matchedParty.length; ++i) {
                     for (j = 0; j < parsedClients.matchedParty[i].party.field.length; ++j) {
