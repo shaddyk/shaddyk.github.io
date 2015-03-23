@@ -72,14 +72,38 @@
 
             //request params
             var fullname = document.getElementById('fullname').value;
-            console.log(fullname);
             var birthdate = document.getElementById('birthdate').value;
             var birthplace = document.getElementById('birthplace').value;
             var inn = document.getElementById('inn').value;
             var address = document.getElementById('address').value;
             var doc = document.getElementById('doc').value;
 
-            var text = '{ "query" : "' + fullname + '" }';
+            var text = '{  \
+   "includePartyFields":"true",\
+   "party":{  \
+      "field":[  \
+         {  \
+            "value":"' + fullname + '",\
+            "name":"fullNameRawSource"\
+         },\
+         {  \
+            "value":"' + birthdate + '",\
+            "name":"birthdateRawSource"\
+         },\
+         {  \
+            "value":"' + birthplace + '",\
+            "name":"birthplace"\
+         },\
+         {  \
+            "value":"' + inn + '",\
+            "name":"inn"\
+         }\
+      ],\
+      "sourceSystem":"AL",\
+      "rawId":"1",\
+      "type":"PHYSICAL"\
+   }\
+}';
 
             var client = new XMLHttpRequest();
 
