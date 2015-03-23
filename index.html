@@ -149,7 +149,7 @@
 
             client.send(text);
 
-            if (client.status == 200)
+            if (client.status == 200) {
                 var parsedClients = JSON.parse(client.responseText);
                 var dataSet = [[]];
                 for (i = 0; i < parsedClients.matchedParty.length; ++i) {
@@ -158,7 +158,8 @@
                     }
                 }
                 console.log(dataSet);
-            else
+            }
+            else {
                 alert("The request did not succeed!\n\nThe response status was: " + client.status + " " + client.statusText + ".");
             }
             
