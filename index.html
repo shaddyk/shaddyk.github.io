@@ -160,7 +160,7 @@
                     for (i = 0; i < parsedClients.matchedParty.length; ++i) {
                         dataSet.push([])
                         for (j = 0; j < parsedClients.matchedParty[i].party.field.length; ++j) {
-                            fillPartyData(parsedClients,i,j);
+                            fillPartyData(dataSet, parsedClients, i, j);
                         }
                     }
                     $.fillResultTable();
@@ -173,25 +173,25 @@
             }
     }
             
-    function fillPartyData(client,party, field) {
+    function fillPartyData(ds, client, party, field) {
         curField = client.matchedParty[party].party.field[field];
         if (curField.name === 'rule'){
-            dataSet[party][0] = curField.value;
+            ds[party][0] = curField.value;
         }
         else if (curField.name === 'nameRawSource'){
-            dataSet[party][1] = curField.value;
+            ds[party][1] = curField.value;
         }
         else if (curField.name === 'birthdate'){
-            dataSet[party][2] = curField.value;
+            ds[party][2] = curField.value;
         }
         else if (curField.name === 'birthPlace'){
-            dataSet[party][3] = curField.value;
+            ds[party][3] = curField.value;
         }
         else if (curField.name === 'inn'){
-            dataSet[party][4] = curField.value;
+            ds[party][4] = curField.value;
         }
         else if (curField.name === 'documentNumber'){
-            dataSet[party][5] = curField.value;
+            ds[party][5] = curField.value;
         }
     }
     
