@@ -163,7 +163,7 @@
                             fillPartyData(dataSet, parsedClients, i, j);
                         }
                     }
-                    $.fillResultTable();
+                    $.fillResultTable(dataSet);
                 }
                 else{alert('No matched parties found');}
             }
@@ -195,7 +195,7 @@
         }
     }
     
-    $.fillResultTable = function() {
+    $.fillResultTable = function(ds) {
     if ( $.fn.dataTable.isDataTable( '#result' ) ) {
         table = $('#result').DataTable();
         table.destroy();
@@ -204,7 +204,7 @@
         retrieve: true,
         paging: false,
         searching: false,
-        "data": dataSet,
+        "data": ds,
             "columns": [ {
             "title": "Правило"
         }, {
