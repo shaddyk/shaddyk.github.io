@@ -78,7 +78,6 @@
         </script>
         <script type="text/javascript">
             document.getElementById('checkBlacklist').onclick = checkBlacklist;
-            var dataSet = [];
             
             function checkBlacklist() {
             //var url = "http://hq.hflabs.ru:8964/cdi/soap/services/2_13/PartyRA/checkBlacklist";
@@ -155,6 +154,7 @@
             client.send(text);
 
             if (client.status == 200) {
+                var dataSet = [];
                 var parsedClients = JSON.parse(client.responseText);
                 if (!jQuery.isEmptyObject(parsedClients)) {
                     for (i = 0; i < parsedClients.matchedParty.length; ++i) {
