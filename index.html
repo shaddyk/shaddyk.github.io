@@ -195,7 +195,11 @@
     }
     
     $.fillResultTable = function() {
-    dt = $('#result').dataTable({
+    if ( $.fn.dataTable.isDataTable( '#result' ) ) {
+        table = $('#result').DataTable();
+        table.destroy();
+    }
+    $('#result').dataTable({
         retrieve: true,
         paging: false,
         searching: false,
