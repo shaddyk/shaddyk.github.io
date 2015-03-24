@@ -189,11 +189,16 @@
         else if (curField.name === 'inn'){
             dataSet[party][4] = curField.value;
         }
+        else if (curField.name === 'documentNumber'){
+            dataSet[party][5] = curField.value;
+        }
     }
     
     $.fillResultTable = function() {
-    $('#result').dataTable({
+    dt = $('#result').dataTable({
+        retrieve: true,
         paging: false,
+        searching: false,
         "data": dataSet,
             "columns": [ {
             "title": "Правило"
@@ -205,6 +210,8 @@
             "title": "Место рождения"
         }, {
             "title": "ИНН"
+        }, {
+            "title": "Документ"
         }]
     });
     };
